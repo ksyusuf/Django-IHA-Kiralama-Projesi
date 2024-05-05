@@ -22,5 +22,6 @@ urlpatterns = [
 
     path("renting/<int:id>", views.renting, name="renting"),
 
-    path("rent-update/<int:id>", views.rent_update, name="rent-update")
+    path("rent-update/<int:id>", views.rent_update, name="rent-update"),
+    path("rent-delete", views.rent_delete, name="rent-delete")
 ]

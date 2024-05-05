@@ -13,19 +13,24 @@
 
             <ul class="navbar-nav ms-auto">
                 {% if request.session.user_logged_in %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'renteds' %}">Kiralamalarım</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'logout' %}">Çıkış</a>
-                </li>
+                    {% if request.session.customer_name %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">{{ request.session.customer_name }}</a>
+                        </li>
+                    {% endif %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'renteds' %}">Kiralamalarım</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'logout' %}">Çıkış</a>
+                    </li>
                 {% else %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'register' %}">Kayıt</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'login' %}">Giriş</a>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'register' %}">Kayıt</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">Giriş</a>
+                    </li>
                 {% endif %}
 
             </ul>

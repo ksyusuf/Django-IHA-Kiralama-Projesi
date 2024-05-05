@@ -10,39 +10,63 @@
 
 {% block content %}
 
-{% if success %}
-<div class="alert alert-success">
-    {{success}}
-</div>
-{% endif %}
-
 
 <div class="container">
     <div class="container mt-5">
-    <h1>Kiralanmış İhalar</h1>
-    <table id="datatable1" class="table table-striped">
-        <thead>
-        <tr>
-            <th scope="col">Kiralama No</th>
-            <th scope="col">Marka</th>
-            <th scope="col">Model</th>
-            <th scope="col">Kategori</th>
-            <th scope="col">Ağırlık (Kg)</th>
-            <th scope="col">Kanat Genişliği (m)</th>
-            <th scope="col">Kira Başlangıç Tarihi</th>
-            <th scope="col">Kira Bitiş Tarihi</th>
-            <th scope="col">İşlem</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for rent in renteds %}
+        <h1>Kiralanmış İhalar</h1>
+        {% if success %}
+        <div class="alert alert-success">
+            {{success}}
+        </div>
+        {% endif %}
+        <table id="datatable1" class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">Kiralama No</th>
+                <th scope="col">Marka</th>
+                <th scope="col">Model</th>
+                <th scope="col">Kategori</th>
+                <th scope="col">Ağırlık (Kg)</th>
+                <th scope="col">Kanat Genişliği (m)</th>
+                <th scope="col">Kira Başlangıç Tarihi</th>
+                <th scope="col">Kira Bitiş Tarihi</th>
+                <th scope="col">İşlem</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for rent in renteds %}
             {% include 'customer/partials/_rented_iha.html' %}
-        {% endfor %}
-        </tbody>
-    </table>
+            {% endfor %}
+            </tbody>
+        </table>
 
+    </div>
 </div>
-</div>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $(".cancel-btn").click(function() {
+            var obj_id = $(this).data("custom-id");
+            $.ajax({
+                url: "/rent-delete",
+                method: "POST",
+                data: {
+                    obj_id: obj_id,
+                    csrfmiddlewaretoken: '{{ csrf_token }}'
+                },
+                success: function(data) {
+                    window.location.reload();
+                },
+                error: function(xhr, errmsg, err) {
+                    console.log(xhr.status + ": " + xhr.responseText);
+                    alert(err);
+                }
+            });
+        });
+    });
+</script>
 {% endblock %}
 
 {% block js_files %}
@@ -53,5 +77,5 @@
         $('#datatable1').DataTable();
     } );
 </script>
+
 {% endblock %}
-<!-- bu noktada belirdeiğimiz sayfaya özel scripti ekleyebiliyoruz -->

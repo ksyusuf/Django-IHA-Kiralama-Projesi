@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.shortcuts import render
 from customer.models import Ihas, Customer, Ihas, Rent
+from django.http import JsonResponse
 
 
 def index(request):
@@ -82,6 +83,7 @@ def login(request):
             # giriş başarılı demektir.
             request.session['user_logged_in'] = True
             request.session['customer_id'] = Customer.objects.get(Mail=mail).Customer_id
+            request.session['customer_name'] = Customer.objects.get(Mail=mail).Ad
             return redirect("index")
 
 
@@ -106,12 +108,12 @@ def rentable_detail(request, id):
 def renting(request, id):
     if request.method == "GET":
         if request.session.get('user_logged_in'):
-            # Kullanıcı oturumu kapalı
+            # Kullanıcı oturumu açık
             iha_id = id
             return render(request, 'customer/renting.html', {
                 "iha": Ihas.objects.filter(Iha_id=iha_id)[0]
             })
-        return render(request, 'customer/users/login.html')
+        return redirect("login")  # Kullanıcı oturumu yoksa giriş sayfasına yönlendir
 
     if request.method == "POST":
         # Kullanıcı doğrulaması
@@ -236,3 +238,20 @@ def rent_update(request, id):
                           "success": "Başarılı. Kiralama tarihleriniz başarıyla değiştirildi.",
                           "rent": rent
                       })
+
+
+def rent_delete(request):
+    #  CRUD (DELETE) İPTAL İŞLEMİNİ AJAX KULLANARAK GERÇEKLEŞTİRİR.
+    # burada gerçekleştirilen işlem gerçek bir silme işlemi değildir.
+    # böyle çalışmalarda veritabanından veri silinmesi pek tercih edilen bir yöntem değildir.
+    if request.method == "POST" and request.accepts('application/json'):
+        obj_id = request.POST.get("obj_id")
+        try:
+            rent = Rent.objects.filter(id=obj_id)[0]
+            rent.Status = False
+            rent.save()
+            return JsonResponse({"success": True})
+        except Rent.DoesNotExist:
+            return JsonResponse({"success": False, "error": "Object not found"})
+    else:
+        return JsonResponse({"success": False, "error": "Invalid request"})

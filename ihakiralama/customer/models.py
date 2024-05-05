@@ -37,3 +37,4 @@ class Rent(models.Model):
     Iha_id = models.ForeignKey(Ihas, on_delete=models.CASCADE)
     kira_baslangic = models.DateTimeField(default=timezone.now)
     kira_bitis = models.DateTimeField(null=True, blank=True)
+    Status = models.BooleanField(default=True)

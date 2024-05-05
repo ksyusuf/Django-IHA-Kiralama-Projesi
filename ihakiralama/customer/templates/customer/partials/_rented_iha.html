@@ -9,5 +9,13 @@
     <td>{{ rent.Iha_id.Kanat_w }}</td>
     <td>{{ rent.kira_baslangic }}</td>
     <td>{{ rent.kira_bitis }}</td>
-    <td><a href="{% url 'rent-update' rent.id %}" class="btn btn-primary">Düzenle</a></td>
+    <td>
+        <a href="{% url 'rent-update' rent.id %}" class="btn btn-primary">Düzenle</a>
+        {% if rent.Status %}
+            <a class="btn btn-danger cancel-btn" data-custom-id="{{ rent.id }}">İptal</a>
+        {% else %}
+            <a class="btn btn-danger disabled cancel-btn" data-custom-id="{{ rent.id }}">İptal</a>
+        {% endif %}
+
+    </td>
 </tr>
