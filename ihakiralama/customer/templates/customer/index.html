@@ -7,7 +7,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 {% endblock %}
 
-<h1> İHA KİRALAMA ANA SAYFASI </h1>
 
 {% block content %}
 
@@ -18,7 +17,7 @@
 {% endif %}
 
 <div class="container">
-    <h1 class="mb-4 mt-4">Baykar İHA Kiralama Portalı</h1>
+    <h1>Baykar İHA Kiralama Portalı</h1>
     <div class="container mt-5">
         <hr>
         <table id="datatable2" class="table table-striped">
@@ -28,9 +27,9 @@
                 <th scope="col">Model</th>
                 <th scope="col">Kategori</th>
                 <th scope="col">Ağırlık (Kg)</th>
-                <th scope="col">Kanat Genişliği (m)</th>
-                <th scope="col">Toplam Adet</th>
-                <th scope="col">Müsaitlik Durumu</th>
+                <th scope="col" style="width: 5%;">Kanat Genişliği (m)</th>
+                <th scope="col" style="width: 5%;">Toplam Adet</th>
+                <th scope="col" style="width: 5%;">Müsaitlik Durumu</th>
                 <th scope="col">Bakım Durumu</th>
                 <th scope="col">Durum</th>
                 <th scope="col">İşlem</th>
@@ -43,7 +42,6 @@
             </tbody>
         </table>
     </div>
-</div>
 </div>
 {% endblock %}
 
