@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} LOGİN {% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1> LOGİN </h1>
+    {% if success %}
+        <div class="alert alert-success">
+            {{success}}
+        </div>
+    {% endif %}
+    <form method="POST">
+<!--        post ve get metotları aynı fonksiyon içerisinde ayrıştırılacağı için action özelliği eklemedik -->
+        {% csrf_token %}
+<!--        formu get eden ve post eden kişi aynı mı bunun kontrolüne yarayan bir tokena ihtiyaç vardır
+ csrf token bunun için kullanılır. -->
+        {% if error %}
+            <div class="alert alert-danger">
+                {{error}}
+            </div>
+        {% endif %}
+        <div class="mb-3">
+            <label for="Mail" class="form-label">Mail</label>
+            <input type="text" id="Mail" class="form-control" name="Mail">
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Şifre</label>
+            <input type="password" id="password" class="form-control" name="password">
+        </div>
+        <div class="mb-3"></div>
+
+        <input type="submit" value="Login" class="btn btn-primary">
+    </form>
+</div>
+{% endblock %}
+
+
+
+{% block js_files %}
+    <script src="{% static 'account/js/script.js' %}"></script>
+{% endblock %}
+<!-- bu noktada belirdeiğimiz sayfaya özel scripti ekleyebiliyoruz -->

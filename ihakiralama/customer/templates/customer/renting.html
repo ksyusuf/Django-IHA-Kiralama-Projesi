@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title%} Rentable Details {% endblock %}
+
+{% block content %}
+
+<form method="POST" action="{% url 'renting' iha.Iha_id %}">
+    {% csrf_token %}
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <h1 class="mb-4 text-center"><b>{{ iha.Marka }} / {{ iha.Model }}</b></h1>
+                <div class="card shadow-sm">
+                    {% if error %}
+                    <div class="alert alert-danger">
+                        {{error}}
+                    </div>
+                    {% endif %}
+                    <div class="text-center mb-4">
+                        <img src="{{ iha.image.url }}" alt="No İha Image" class="img-fluid rounded-circle"
+                             style="width: 120px;">
+                    </div>
+                    <div class="card-body">
+
+                        <div class="form-group mt-4">
+                            <label for="start_date" class="form-label">Kiralama Başlangıç Tarihi:</label>
+                            <input type="datetime-local" id="start_date" name="start_date" class="form-control">
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label for="end_date" class="form-label">Kiralama Bitiş Tarihi:</label>
+                            <input type="datetime-local" id="end_date" name="end_date" class="form-control">
+                        </div>
+
+                        <div class="text-center mt-4">
+                            <button type="submit" class="btn btn-primary btn-lg">Kiralamayı Başlat</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+{% endblock %}
+

@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} Ana Sayfa {% endblock %}
+{% block css_files %}
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.11.5/datatables.min.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+{% endblock %}
+
+<h1> İHA KİRALAMA ANA SAYFASI </h1>
+
+{% block content %}
+
+{% if error %}
+<div class="alert alert-danger">
+    {{error}}
+</div>
+{% endif %}
+
+<div class="container">
+    <h1 class="mb-4 mt-4">Baykar İHA Kiralama Portalı</h1>
+    <div class="container mt-5">
+        <hr>
+        <table id="datatable2" class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">Marka</th>
+                <th scope="col">Model</th>
+                <th scope="col">Kategori</th>
+                <th scope="col">Ağırlık (Kg)</th>
+                <th scope="col">Kanat Genişliği (m)</th>
+                <th scope="col">Toplam Adet</th>
+                <th scope="col">Müsaitlik Durumu</th>
+                <th scope="col">Bakım Durumu</th>
+                <th scope="col">Durum</th>
+                <th scope="col">İşlem</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for iha in ihalar %}
+            {% include 'customer/partials/_iha.html' %}
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
+{% endblock %}
+
+{% block js_files %}
+<script src="{% static 'customer/js/script.js' %}"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.11.5/datatables.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#datatable2').DataTable();
+    } );
+</script>
+{% endblock %}
+<!-- bu noktada belirdeiğimiz sayfaya özel scripti ekleyebiliyoruz -->

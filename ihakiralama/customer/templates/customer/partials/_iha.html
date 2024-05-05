@@ -1,0 +1,15 @@
+{% load static %}
+
+
+<tr>
+        <td>{{ iha.Marka }}</td>
+        <td>{{ iha.Model }}</td>
+        <td>{{ iha.Kategori }}</td>
+        <td>{{ iha.Agirlik }}</td>
+        <td>{{ iha.Kanat_w }}</td>
+        <td>{{ iha.Adet }}</td>
+        <td>{{ iha.Musaitlik }} adet</td>
+        <td style="background-color: {% if iha.Bakim_yapildi_mi %}green{% else %}red{% endif %}; color: white;">{% if iha.Bakim_yapildi_mi %}Yapıldı{% else %}Yapılmadı{% endif %}</td>
+        <td style="background-color: {% if iha.Status %}green{% else %}red{% endif %}; color: white;">{% if iha.Status %}Aktif{% else %}Pasif{% endif %}</td>
+        <td><a href="{% url 'rentable_detail' iha.Iha_id %}" class="btn btn-primary">Kiralamaya Başla</a></td>
+    </tr>

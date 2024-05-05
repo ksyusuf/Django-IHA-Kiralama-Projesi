@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} Kiralamalar {% endblock %}
+{% block css_files %}
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.11.5/datatables.min.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+{% endblock %}
+
+
+{% block content %}
+
+{% if success %}
+<div class="alert alert-success">
+    {{success}}
+</div>
+{% endif %}
+
+
+<div class="container">
+    <div class="container mt-5">
+    <h1>Kiralanmış İhalar</h1>
+    <table id="datatable1" class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">Kiralama No</th>
+            <th scope="col">Marka</th>
+            <th scope="col">Model</th>
+            <th scope="col">Kategori</th>
+            <th scope="col">Ağırlık (Kg)</th>
+            <th scope="col">Kanat Genişliği (m)</th>
+            <th scope="col">Kira Başlangıç Tarihi</th>
+            <th scope="col">Kira Bitiş Tarihi</th>
+            <th scope="col">İşlem</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for rent in renteds %}
+            {% include 'customer/partials/_rented_iha.html' %}
+        {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+</div>
+{% endblock %}
+
+{% block js_files %}
+<script src="{% static 'customer/js/script.js' %}"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.11.5/datatables.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#datatable1').DataTable();
+    } );
+</script>
+{% endblock %}
+<!-- bu noktada belirdeiğimiz sayfaya özel scripti ekleyebiliyoruz -->

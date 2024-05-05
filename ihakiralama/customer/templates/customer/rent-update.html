@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title%} ihalar {% endblock %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <h1 class="mb-4 text-center"><b>{{ rent.Iha_id.Marka }} / {{ rent.Iha_id.Model }}</b></h1>
+            <hr>
+            <h5 class="card-title mb-3 text-center"><b>{{ rent.id }}</b> numaralı kiralamanız için güncelleme.</h5>
+            <br>
+            <div class="card shadow-sm">
+                {% if success %}
+                <div class="alert alert-success">
+                    {{success}}
+                </div>
+                {% endif %}
+
+                {% if error %}
+                <div class="alert alert-danger">
+                    {{error}}
+                </div>
+                {% endif %}
+
+                <div class="card-body">
+                    <b>Mevcut kiralama aralığınız:</b>
+                    <p class="card-text">Kira Başlangıç: <b>{{ rent.kira_baslangic }}</b></p>
+                    <p class="card-text">Kira Bitiş: <b>{{ rent.kira_bitis }}</b></p>
+                    <br>
+                    <form method="POST" action="{% url 'rent-update' rent.id %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="rent_id" value="{{ rent.id }}">
+                        <b>Yeni kiralama aralığınız</b>
+                        <div class="form-group">
+                            <label for="start_date" class="form-label">Kiralama Başlangıç Tarihi:</label>
+                            <input type="datetime-local" id="start_date" name="start_date" class="form-control"
+                                   value="{{ iha.kira_baslangic }}">
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label for="end_date" class="form-label">Kiralama Bitiş Tarihi:</label>
+                            <input type="datetime-local" id="end_date" name="end_date" class="form-control"
+                                   value="{{ iha.kira_bitis }}">
+                        </div>
+
+                        <div class="text-center mt-4">
+                            <button type="submit" class="btn btn-primary btn-lg">Güncelle</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

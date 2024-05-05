@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title%} Rentable Details {% endblock %}
+
+{% block content %}
+<form method="GET" action="{% url 'renting' iha.Iha_id %}">
+    {% csrf_token %}
+    <input type="hidden" name="Iha_id" value="{{ iha.Iha_id }}">
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <h1 class="mb-4 text-center">Kiralanabilir İha Detayı</h1>
+                <div class="card shadow-sm">
+                    <div class="text-center mb-4">
+                            <img src="{{ iha.image.url }}" alt="No İha Image" class="img-fluid rounded-circle"
+                                 style="width: 120px;">
+                        </div>
+                    <div class="card-body">
+                        <p class="card-text"><strong>İha No:</strong> {{ iha.Iha_id }}</p>
+                        <p class="card-text"><strong>Marka / Model:</strong> {{ iha.Marka }} / {{ iha.Model }}</p>
+                        <p class="card-text"><strong>Ağırlık:</strong> {{ iha.Agirlik }} kg</p>
+                        <p class="card-text"><strong>Kategori:</strong> {{ iha.Kategori }}</p>
+                        <p class="card-text"><strong>Kanat Genişliği:</strong> {{ iha.Kanat_w }} m</p>
+                        <p class="card-text"><strong>Adet:</strong> {{ iha.Adet }}</p>
+                        <p class="card-text"><strong>Müsaitlik Durumu:</strong>
+                            {% if iha.Musaitlik %}Müsait{% else %}Müsait Değil{% endif %}</p>
+                        <p class="card-text"><strong>Bakım Durumu:</strong>
+                            {% if iha.Bakim_yapildi_mi %}Yapıldı{% else %}Yapılmadı{% endif %}</p>
+                        <p class="card-text"><strong>Durum:</strong>
+                            {% if iha.Status %}Aktif{% else %}Pasif{% endif %}
+                        </p>
+                        <div class="text-center mt-4">
+                            <button type="submit" class="btn btn-primary btn-lg">Kirala</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+{% endblock %}
+
+ 

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+<!--    eğer burada source url başına uygulama adını yazarsan onun statci klasöründe arar o dosyayı -->
+
+<!-- alttaki sayesinde her sayfanın kendine özel css eklemesi yapılabilir ve bu kısma eklenir. -->
+    {% block css_files %} {% endblock %}
+
+    <title>IHA - {% block title %} {% endblock %}</title>
+</head>
+<body>
+    {% include 'partials/_navbar.html' %}
+
+<!--    alt taraftaki blok .net RenderBody işlevini görüyor. -->
+    {% block content %}{% endblock %}
+
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/base.js' %}"></script>
+
+    <!--hangi sayfada özel script kullanmak istersen burada konumlandırılacak-->
+    {% block js_files %} {% endblock %}
+</body>
+</html>
