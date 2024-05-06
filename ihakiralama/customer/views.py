@@ -122,8 +122,6 @@ def renting(request, id):
             return redirect("login")  # Kullanıcı oturumu yoksa giriş sayfasına yönlendir
 
         iha_id = id
-        # start_date = request.POST.get("start_date")
-        # end_date = request.POST.get("end_date")
 
         datetimes = request.POST.get("datetimes")
         start_date_str, end_date_str = datetimes.split(' - ')
@@ -178,8 +176,7 @@ def renting(request, id):
             return render(request, "customer/renteds.html",
                           {
                               "success": "Tebrikler iha kiralama işleminiz başarılı. İyi sürüşler.",
-                              "customer_id": customer_id
-                              # customer_id göndermemizin sebebi ilgili sayfanın html kısmında karşılama olması.
+                              "renteds": Rent.objects.filter(Customer_id=customer_id)
                           })
 
 
@@ -192,7 +189,7 @@ def renteds(request):
         customer_id = request.session.get('customer_id')
         return render(request, 'customer/renteds.html', {
             "renteds": Rent.objects.filter(Customer_id=customer_id),
-            "customer_id": Customer.objects.filter(Customer_id=customer_id)[0].Customer_id,
+            "customer_id": Customer.objects.filter(Customer_id=customer_id)[0].Customer_id
         })
 
     if request.method == "POST":
@@ -217,12 +214,16 @@ def rent_update(request, id):
         # Kullanıcı doğrulaması
         customer_id = request.session.get('customer_id')
         rent = Rent.objects.filter(id=id)[0]
-        rent.kira_baslangic = request.POST.get("start_date")
-        rent.kira_bitis = request.POST.get("end_date")
+
+        datetimes = request.POST.get("datetimes")
+        start_date_str, end_date_str = datetimes.split(' - ')
+        rent.kira_baslangic = datetime.strptime(start_date_str, '%m/%d/%Y %H:%M')
+        rent.kira_bitis = datetime.strptime(end_date_str, '%m/%d/%Y %H:%M')
+
         if not customer_id:
             return redirect("login")  # Kullanıcı oturumu yoksa giriş sayfasına yönlendir
         ################################################
-        if not request.POST.get("start_date") or not request.POST.get("end_date"):
+        if not request.POST.get("datetimes"):
             return render(request, "customer/rent-update.html", {
                 "error": "Tarihler boş bırakılamaz.",
                 "rent": rent
@@ -237,11 +238,12 @@ def rent_update(request, id):
         # kiralama update
         # CRUD (UPDATE)
         rent.save()
-
-        return render(request, "customer/rent-update.html",
+        iha_by_rent_id = Ihas.objects.filter(Iha_id=Rent.objects.filter(id=id)[0].Iha_id_id)[0]
+        success_message = f"Başarılı. <b>{rent.id}</b> kiralama numaralı <b>{iha_by_rent_id.Marka}</b> / <b>{iha_by_rent_id.Model}</b> kiralamanızın tarihleri başarıyla değiştirildi."
+        return render(request, "customer/renteds.html",
                       {
-                          "success": "Başarılı. Kiralama tarihleriniz başarıyla değiştirildi.",
-                          "rent": rent
+                          "success": success_message,
+                          "renteds": Rent.objects.filter(Customer_id=customer_id)
                       })
 
 

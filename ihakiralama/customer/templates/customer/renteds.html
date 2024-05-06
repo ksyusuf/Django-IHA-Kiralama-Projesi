@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 
-{% block title %} Kiralamalar {% endblock %}
+{% block title %} Kiralamalarım {% endblock %}
 {% block css_files %}
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.11.5/datatables.min.css"/>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -14,11 +14,14 @@
 <div class="container">
     <h1>Kiralanmış İhalar</h1>
     <hr>
-    {% if success %}
-    <div class="alert alert-success">
-        {{success}}
-    </div>
-    {% endif %}
+{% if success %}
+{% autoescape off %}
+<div class="alert alert-success">
+    {{success}}
+</div>
+{% endautoescape %}
+{% endif %}
+
     <table id="datatable1" class="table table-striped">
         <thead>
         <tr>
@@ -40,7 +43,7 @@
         </tbody>
     </table>
 </div>
-
+<div class="container" style="visibility: hidden; margin: 80px"></div>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
@@ -82,7 +85,7 @@
             "createdRow": function(row, data, index) {
                 $('td', row).css('vertical-align', 'middle').css('text-align');
             },
-            "scrollY": "50vh", // Sabit bir yükseklik belirtilebilir
+            "scrollY": "40vh", // Sabit bir yükseklik belirtilebilir
       });
     });
 </script>

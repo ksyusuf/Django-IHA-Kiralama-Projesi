@@ -10,7 +10,12 @@
     <td>{{ rent.kira_baslangic|date:"d.m.Y - H:i" }}</td>
     <td>{{ rent.kira_bitis|date:"d.m.Y - H:i" }}</td>
     <td>
-        <a href="{% url 'rent-update' rent.id %}" class="btn btn-primary">Düzenle</a>
+        {% if rent.Status %}
+            <a href="{% url 'rent-update' rent.id %}" class="btn btn-primary">Düzenle</a>
+        {% else %}
+        <a href="{% url 'rent-update' rent.id %}" class="btn btn-primary disabled">Düzenle</a>
+        {% endif %}
+
         {% if rent.Status %}
             <a class="btn btn-danger cancel-btn" data-custom-id="{{ rent.id }}">İptal</a>
         {% else %}

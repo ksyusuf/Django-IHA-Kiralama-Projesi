@@ -1,9 +1,15 @@
 {% extends "base.html" %}
 
-{% block title%} ihalar {% endblock %}
+{% block title%} Kiralama Düzenle {% endblock %}
 
 {% block content %}
-<div class="container py-5">
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+
+
+<div class="container">
     <div class="row">
         <div class="col-md-6 offset-md-3">
             <h1 class="mb-4 text-center"><b>{{ rent.Iha_id.Marka }} / {{ rent.Iha_id.Model }}</b></h1>
@@ -25,28 +31,21 @@
 
                 <div class="card-body">
                     <b>Mevcut kiralama aralığınız:</b>
-                    <p class="card-text">Kira Başlangıç: <b>{{ rent.kira_baslangic }}</b></p>
-                    <p class="card-text">Kira Bitiş: <b>{{ rent.kira_bitis }}</b></p>
+                    <p class="card-text">Kira Başlangıç: <b>{{ rent.kira_baslangic|date:"d.m.Y - H:i" }}</b></p>
+                    <p class="card-text">Kira Bitiş: <b>{{ rent.kira_bitis|date:"d.m.Y - H:i" }}</b></p>
                     <br>
                     <form method="POST" action="{% url 'rent-update' rent.id %}">
                         {% csrf_token %}
                         <input type="hidden" name="rent_id" value="{{ rent.id }}">
-                        <b>Yeni kiralama aralığınız</b>
-                        <div class="form-group">
-                            <label for="start_date" class="form-label">Kiralama Başlangıç Tarihi:</label>
-                            <input type="datetime-local" id="start_date" name="start_date" class="form-control"
-                                   value="{{ iha.kira_baslangic }}">
-                        </div>
-                        <br>
-                        <div class="form-group">
-                            <label for="end_date" class="form-label">Kiralama Bitiş Tarihi:</label>
-                            <input type="datetime-local" id="end_date" name="end_date" class="form-control"
-                                   value="{{ iha.kira_bitis }}">
-                        </div>
 
+                        <p><b>Yeni kiralama aralığınız</b></p>
+                        <div class="form-group">
+                            <input type="text" class="form-control" id="daterange" name="datetimes">
+                        </div>
                         <div class="text-center mt-4">
                             <button type="submit" class="btn btn-primary btn-lg">Güncelle</button>
                         </div>
+
                     </form>
 
                 </div>
@@ -55,4 +54,83 @@
     </div>
 </div>
 
+<script>
+$(function() {
+  $('#daterange').daterangepicker({
+    "showDropdowns": true,
+    "timePicker": true,
+    "timePicker24Hour": true,
+    "timePickerIncrement": 10,
+    "maxSpan": {
+        "days": 7
+    },
+    "locale": {
+        "format": "MM/DD/YYYY HH:mm",
+        "separator": " - ",
+        "applyLabel": "Apply",
+        "cancelLabel": "Cancel",
+        "fromLabel": "From",
+        "toLabel": "To",
+        "customRangeLabel": "Custom",
+        "weekLabel": "W",
+        "daysOfWeek": [
+            "Su",
+            "Mo",
+            "Tu",
+            "We",
+            "Th",
+            "Fr",
+            "Sa"
+        ],
+        "monthNames": [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ],
+        "firstDay": 1
+    },
+    "startDate": "05/03/2024",
+    "endDate": "05/06/2024",
+    "opens": "center"
+}, function(start, end, label) {
+});
+});
+</script>
+<script>
+ $('#submitBtn').click(function() {
+    var dateRange = $('#daterange').val();
+    var start_date = moment(dateRange.split(' - ')[0], 'MM/DD/YYYY HH:mm').format('YYYY-MM-DD HH:mm:ss');
+    var end_date = moment(dateRange.split(' - ')[1], 'MM/DD/YYYY HH:mm').format('YYYY-MM-DD HH:mm:ss');
+
+    $.ajax({
+      type: 'POST',
+      url: $('#rentForm').attr('action'),
+      headers: {
+        'X-CSRFToken': $('input[name=csrfmiddlewaretoken]').val()
+      },
+      data: {
+        start_date: start_date,
+        end_date: end_date
+      },
+      success: function(response) {
+        // Handle success response
+        console.log(response);
+      },
+      error: function(xhr, errmsg, err) {
+        // Handle error response
+        console.log(xhr.status + ": " + xhr.responseText);
+      }
+    });
+  });
+});
+</script>
 {% endblock %}

@@ -6,12 +6,9 @@
         {% if request.session.user_logged_in %}
         {% if request.session.customer_name %}
         <li class="">
-            <a class="" href="/">{{ request.session.customer_name }}</a>
+            <a class="" href="{% url 'renteds' %}">Kiralamalarım ({{ request.session.customer_name }})</a>
         </li>
         {% endif %}
-        <li class="">
-            <a class="" href="{% url 'renteds' %}">Kiralamalarım</a>
-        </li>
         <li class="">
             <a class="" href="{% url 'logout' %}">Çıkış</a>
         </li>
