@@ -64,6 +64,8 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                #  her sayfada bulunan footer'a güncel yıl bilgisini gödnermek için
+                'context_processors.footer_context',
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',

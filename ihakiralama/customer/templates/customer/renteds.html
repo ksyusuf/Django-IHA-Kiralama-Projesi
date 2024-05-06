@@ -12,35 +12,33 @@
 
 
 <div class="container">
-    <div class="container">
-        <h1>Kiralanmış İhalar</h1>
-        {% if success %}
-        <div class="alert alert-success">
-            {{success}}
-        </div>
-        {% endif %}
-        <table id="datatable1" class="table table-striped">
-            <thead>
-            <tr>
-                <th scope="col">Kiralama No</th>
-                <th scope="col">Marka</th>
-                <th scope="col">Model</th>
-                <th scope="col">Kategori</th>
-                <th scope="col">Ağırlık (Kg)</th>
-                <th scope="col">Kanat Genişliği (m)</th>
-                <th scope="col">Kira Başlangıç Tarihi</th>
-                <th scope="col">Kira Bitiş Tarihi</th>
-                <th scope="col">İşlem</th>
-            </tr>
-            </thead>
-            <tbody>
-            {% for rent in renteds %}
-            {% include 'customer/partials/_rented_iha.html' %}
-            {% endfor %}
-            </tbody>
-        </table>
-
+    <h1>Kiralanmış İhalar</h1>
+    <hr>
+    {% if success %}
+    <div class="alert alert-success">
+        {{success}}
     </div>
+    {% endif %}
+    <table id="datatable1" class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col" style="width: 3%;">Kiralama No</th>
+            <th scope="col">Marka</th>
+            <th scope="col">Model</th>
+            <th scope="col">Kategori</th>
+            <th scope="col" style="width: 5%;">Ağırlık (Kg)</th>
+            <th scope="col" style="width: 5%;">Kanat Genişliği (m)</th>
+            <th scope="col">Kira Başlangıç Tarihi</th>
+            <th scope="col">Kira Bitiş Tarihi</th>
+            <th scope="col">İşlem</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for rent in renteds %}
+        {% include 'customer/partials/_rented_iha.html' %}
+        {% endfor %}
+        </tbody>
+    </table>
 </div>
 
 
@@ -74,8 +72,19 @@
 <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.11.5/datatables.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
-        $('#datatable1').DataTable();
-    } );
+        $('#datatable1').DataTable({
+        'columnDefs': [
+           {
+                "targets": [0,3,4,5,6,7,8],
+                "className": "text-center",
+           }
+         ],
+            "createdRow": function(row, data, index) {
+                $('td', row).css('vertical-align', 'middle').css('text-align');
+            },
+            "scrollY": "50vh", // Sabit bir yükseklik belirtilebilir
+      });
+    });
 </script>
 
 {% endblock %}
