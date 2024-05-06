@@ -4,41 +4,83 @@
 {% block title %} LOGİN {% endblock %}
 
 {% block content %}
-<div class="container">
-    <h1> LOGİN </h1>
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+    .container {
+        max-width: 500px;
+        margin: 50px auto;
+        background-color: #fff;
+        padding: 30px;
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+    .container h2 {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    .form-group {
+        margin-bottom: 20px;
+    }
+    .form-group label {
+        font-weight: bold;
+    }
+    .form-group input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    .form-group button {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        background-color: #007bff;
+        color: #fff;
+        cursor: pointer;
+    }
+    .form-group button:hover {
+        background-color: #0056b3;
+    }
+</style>
+
+<div class="container mb-5">
+    <h2>Giriş</h2>
     {% if success %}
-        <div class="alert alert-success">
-            {{success}}
-        </div>
+    <div class="alert alert-success">
+        {{success}}
+    </div>
     {% endif %}
     <form method="POST">
-<!--        post ve get metotları aynı fonksiyon içerisinde ayrıştırılacağı için action özelliği eklemedik -->
+        <!--        post ve get metotları aynı fonksiyon içerisinde ayrıştırılacağı için action özelliği eklemedik -->
         {% csrf_token %}
-<!--        formu get eden ve post eden kişi aynı mı bunun kontrolüne yarayan bir tokena ihtiyaç vardır
- csrf token bunun için kullanılır. -->
+        <!--        formu get eden ve post eden kişi aynı mı bunun kontrolüne yarayan bir tokena ihtiyaç vardır
+         csrf token bunun için kullanılır. -->
         {% if error %}
-            <div class="alert alert-danger">
-                {{error}}
-            </div>
+        <div class="alert alert-danger">
+            {{error}}
+        </div>
         {% endif %}
-        <div class="mb-3">
+        <div class="form-group mb-3">
             <label for="Mail" class="form-label">Mail</label>
-            <input type="text" id="Mail" class="form-control" name="Mail">
+            <input type="text" id="Mail" class="form-control" name="Mail" required>
         </div>
-        <div class="mb-3">
+        <div class="form-group mb-3">
             <label for="password" class="form-label">Şifre</label>
-            <input type="password" id="password" class="form-control" name="password">
+            <input type="password" id="password" class="form-control" name="password" required>
         </div>
-        <div class="mb-3"></div>
-
-        <input type="submit" value="Login" class="btn btn-primary">
+        <br>
+        <div class="form-group mb-3">
+            <input type="submit" value="Giriş Yap" class="btn btn-primary">
+        </div>
     </form>
 </div>
 {% endblock %}
 
 
-
 {% block js_files %}
-    <script src="{% static 'account/js/script.js' %}"></script>
+<script src="{% static 'account/js/script.js' %}"></script>
 {% endblock %}
 <!-- bu noktada belirdeiğimiz sayfaya özel scripti ekleyebiliyoruz -->

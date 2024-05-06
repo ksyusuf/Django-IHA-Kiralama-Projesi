@@ -71,7 +71,7 @@ def login(request):
 
         if not Customer.objects.filter(Mail=mail).exists():
             return render(request, "customer/users/login.html", {
-                "error": "böyle bir mail yok.",
+                "error": "Böyle bir mail yok.",
             })
         ######################################
         if sifre != Customer.objects.filter(Mail=mail)[0].Sifre:
