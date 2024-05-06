@@ -81,3 +81,61 @@ python manage.py runserver
 
 * Projeyle ilgili herhangi bir sorunuz veya geri bildiriminiz varsa lütfen GitHub üzerinden iletişime geçin.
 * Projeye katkıda bulunmak isterseniz lütfen bir pull request oluşturun.
+
+# Fotoğraf Albümü
+
+Bu repo, içerisinde bir fotoğraf albümü bulunduruyor. Aşağıda albümde yer alan fotoğrafların listesi ve dosya isimleri bulunmaktadır:
+
+## Ana Sayfa (giriş yapılmış)
+
+<img src="https://github.com/ksyusuf/Django-IHA-Kiralama-Projesi/blob/master/Ekran%20g%C3%B6r%C3%BCnt%C3%BCleri/IHA%20-%20Ana%20Sayfa%20(giri%C5%9F%20yap%C4%B1lm%C4%B1%C5%9F).png" alt="Ana Sayfa (giriş yapılmış)" width="700">
+
+## Detaylar (kiralamaya başla)
+
+<img src="https://github.com/ksyusuf/Django-IHA-Kiralama-Projesi/blob/master/Ekran%20g%C3%B6r%C3%BCnt%C3%BCleri/IHA%20-%20Detaylar.png" alt="Detaylar" width="700">
+
+
+## Kiralama Tarihleri
+
+<img src="https://github.com/ksyusuf/Django-IHA-Kiralama-Projesi/blob/master/Ekran%20g%C3%B6r%C3%BCnt%C3%BCleri/IHA%20-%20Kiralama%20Tarihleri.png" alt="Kiralama Tarihleri" width="700">
+
+## Kiralama Tarihleri (tarih seçimi)
+
+<img src="https://github.com/ksyusuf/Django-IHA-Kiralama-Projesi/blob/master/Ekran%20g%C3%B6r%C3%BCnt%C3%BCleri/IHA%20-%20Kiralama%20Tarihleri%20(tarih%20se%C3%A7imi).png" alt="Kiralama Tarihleri (tarih seçimi)" width="700">
+
+## Kiralama Tarihleri (bakımsız iha kiralama)
+
+<img src="https://github.com/ksyusuf/Django-IHA-Kiralama-Projesi/blob/master/Ekran%20g%C3%B6r%C3%BCnt%C3%BCleri/IHA%20-%20Kiralama%20Tarihleri%20(bak%C4%B1ms%C4%B1z%20iha%20kiralama).png" alt="Kiralama Tarihleri (bakımsız iha kiralama)" width="700">
+
+
+## Kiralamalarım
+
+<img src="https://github.com/ksyusuf/Django-IHA-Kiralama-Projesi/blob/master/Ekran%20g%C3%B6r%C3%BCnt%C3%BCleri/IHA%20-%20Kiralamalar%C4%B1m.png" alt="Kiralamalarım" width="700">
+
+## Kiralama Düzenle
+
+<img src="https://github.com/ksyusuf/Django-IHA-Kiralama-Projesi/blob/master/Ekran%20g%C3%B6r%C3%BCnt%C3%BCleri/IHA%20-%20Kiralama%20D%C3%BCzenle.png" alt="Kiralama Düzenle" width="700">
+
+## Kiralamalarım (düzenleme)
+
+<img src="https://github.com/ksyusuf/Django-IHA-Kiralama-Projesi/blob/master/Ekran%20g%C3%B6r%C3%BCnt%C3%BCleri/IHA%20-%20Kiralamalar%C4%B1m%20(d%C3%BCzenleme).png" alt="Kiralamalarım (düzenleme)" width="700">
+
+## Kullanıcı Kayıt
+
+<img src="https://github.com/ksyusuf/Django-IHA-Kiralama-Projesi/blob/master/Ekran%20g%C3%B6r%C3%BCnt%C3%BCleri/IHA%20-%20Kullan%C4%B1c%C4%B1%20Kay%C4%B1t.png" alt="Kullanıcı Kayıt" width="700">
+
+## Kullanıcı Kayıt (mail zaten var)
+
+<img src="https://github.com/ksyusuf/Django-IHA-Kiralama-Projesi/blob/master/Ekran%20g%C3%B6r%C3%BCnt%C3%BCleri/IHA%20-%20Kullan%C4%B1c%C4%B1%20Kay%C4%B1t%20(mail%20zaten%20var).png" alt="Kullanıcı Kayıt (mail zaten var)" width="700">
+
+## Kullanıcı Kayıt (şifreler eşleşmiyor)
+
+<img src="https://github.com/ksyusuf/Django-IHA-Kiralama-Projesi/blob/master/Ekran%20g%C3%B6r%C3%BCnt%C3%BCleri/IHA%20-%20Kullan%C4%B1c%C4%B1%20Kay%C4%B1t%20(%C5%9Fifreler%20e%C5%9Fle%C5%9Fmiyor).png" alt="Kullanıcı Kayıt (şifreler eşleşmiyor)" width="700">
+
+## Kullanıcı Giriş
+
+<img src="https://github.com/ksyusuf/Django-IHA-Kiralama-Projesi/blob/master/Ekran%20g%C3%B6r%C3%BCnt%C3%BCleri/IHA%20-%20Kullan%C4%B1c%C4%B1%20Giri%C5%9F.png" alt="Kullanıcı Giriş" width="700">
+
+## Kullanıcı Giriş (şifre yanlış)
+
+<img src="https://github.com/ksyusuf/Django-IHA-Kiralama-Projesi/blob/master/Ekran%20g%C3%B6r%C3%BCnt%C3%BCleri/IHA%20-%20Kullan%C4%B1c%C4%B1%20Giri%C5%9F%20(%C5%9Fifre%20yanl%C4%B1%C5%9F).png" alt="Kullanıcı Giriş (şifre yanlış)" width="700">
