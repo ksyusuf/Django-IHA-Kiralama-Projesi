@@ -86,6 +86,10 @@ python manage.py runserver
 
 Bu repo, içerisinde bir fotoğraf albümü bulunduruyor. Aşağıda albümde yer alan fotoğrafların listesi ve dosya isimleri bulunmaktadır:
 
+## Ana Sayfa (ziyaretçi)
+
+<img src="https://github.com/ksyusuf/Django-IHA-Kiralama-Projesi/blob/master/Ekran%20g%C3%B6r%C3%BCnt%C3%BCleri/IHA%20-%20Ana%20Sayfa%20(ziyaret%C3%A7i).png" alt="Ana Sayfa (giriş yapılmış)" width="700">
+
 ## Ana Sayfa (giriş yapılmış)
 
 <img src="https://github.com/ksyusuf/Django-IHA-Kiralama-Projesi/blob/master/Ekran%20g%C3%B6r%C3%BCnt%C3%BCleri/IHA%20-%20Ana%20Sayfa%20(giri%C5%9F%20yap%C4%B1lm%C4%B1%C5%9F).png" alt="Ana Sayfa (giriş yapılmış)" width="700">
@@ -93,7 +97,6 @@ Bu repo, içerisinde bir fotoğraf albümü bulunduruyor. Aşağıda albümde ye
 ## Detaylar (kiralamaya başla)
 
 <img src="https://github.com/ksyusuf/Django-IHA-Kiralama-Projesi/blob/master/Ekran%20g%C3%B6r%C3%BCnt%C3%BCleri/IHA%20-%20Detaylar.png" alt="Detaylar" width="700">
-
 
 ## Kiralama Tarihleri
 
@@ -107,6 +110,9 @@ Bu repo, içerisinde bir fotoğraf albümü bulunduruyor. Aşağıda albümde ye
 
 <img src="https://github.com/ksyusuf/Django-IHA-Kiralama-Projesi/blob/master/Ekran%20g%C3%B6r%C3%BCnt%C3%BCleri/IHA%20-%20Kiralama%20Tarihleri%20(bak%C4%B1ms%C4%B1z%20iha%20kiralama).png" alt="Kiralama Tarihleri (bakımsız iha kiralama)" width="700">
 
+## Kiralamalarım (iyi sürüşler)
+
+<img src="https://github.com/ksyusuf/Django-IHA-Kiralama-Projesi/blob/master/Ekran%20g%C3%B6r%C3%BCnt%C3%BCleri/IHA%20-%20Kiralamalar%C4%B1m%20(iyi%20s%C3%BCr%C3%BC%C5%9Fler).png" alt="Kiralamalarım" width="700">
 
 ## Kiralamalarım
 
