@@ -1,4 +1,4 @@
-# İHA Kiralama Projesi  →  [Fotoğraf Albümü](#dotoğraf-albümü)
+# İHA Kiralama Projesi  →  [Fotoğraf Albümü](#fotoğraf-albümü)
 
 
 Bu proje, Django ve PostgreSQL kullanılarak geliştirilen bir İnsansız Hava Aracı (İHA) kiralama web uygulamasıdır.
