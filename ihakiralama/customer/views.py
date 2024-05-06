@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.shortcuts import render
 from customer.models import Ihas, Customer, Ihas, Rent
 from django.http import JsonResponse
-
+from datetime import datetime
 
 def index(request):
     contex = {
@@ -122,8 +122,13 @@ def renting(request, id):
             return redirect("login")  # Kullanıcı oturumu yoksa giriş sayfasına yönlendir
 
         iha_id = id
-        start_date = request.POST.get("start_date")
-        end_date = request.POST.get("end_date")
+        # start_date = request.POST.get("start_date")
+        # end_date = request.POST.get("end_date")
+
+        datetimes = request.POST.get("datetimes")
+        start_date_str, end_date_str = datetimes.split(' - ')
+        start_date = datetime.strptime(start_date_str, '%m/%d/%Y %H:%M')
+        end_date = datetime.strptime(end_date_str, '%m/%d/%Y %H:%M')
 
         ######################################
         if not Ihas.objects.filter(Iha_id=iha_id).exists():
