@@ -7,15 +7,11 @@
 <form method="GET" action="{% url 'renting' iha.Iha_id %}">
     {% csrf_token %}
     <input type="hidden" name="Iha_id" value="{{ iha.Iha_id }}">
-    <div class="container py-5">
+    <div class="container">
         <div class="row">
             <div class="col-md-6 offset-md-3">
                 <h1 class="mb-4 text-center">Kiralanabilir İha Detayı</h1>
                 <div class="card shadow-sm">
-                    <div class="text-center mb-4">
-                            <img src="{{ iha.image.url }}" alt="No İha Image" class="img-fluid rounded-circle"
-                                 style="width: 120px;">
-                        </div>
                     <div class="card-body">
                         <p class="card-text"><strong>İha No:</strong> {{ iha.Iha_id }}</p>
                         <p class="card-text"><strong>Marka / Model:</strong> {{ iha.Marka }} / {{ iha.Model }}</p>

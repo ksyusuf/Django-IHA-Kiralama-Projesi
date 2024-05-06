@@ -7,8 +7,8 @@
     <td>{{ rent.Iha_id.Kategori }}</td>
     <td>{{ rent.Iha_id.Agirlik }}</td>
     <td>{{ rent.Iha_id.Kanat_w }}</td>
-    <td>{{ rent.kira_baslangic }}</td>
-    <td>{{ rent.kira_bitis }}</td>
+    <td>{{ rent.kira_baslangic|date:"d.m.Y - H:i" }}</td>
+    <td>{{ rent.kira_bitis|date:"d.m.Y - H:i" }}</td>
     <td>
         <a href="{% url 'rent-update' rent.id %}" class="btn btn-primary">Düzenle</a>
         {% if rent.Status %}

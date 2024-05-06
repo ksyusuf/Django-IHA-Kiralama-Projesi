@@ -3,11 +3,19 @@
 
 {% block title%} Rentable Details {% endblock %}
 
+
+
+
 {% block content %}
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
 <form method="POST" action="{% url 'renting' iha.Iha_id %}">
     {% csrf_token %}
-    <div class="container py-5">
+    <div class="container">
         <div class="row">
             <div class="col-md-6 offset-md-3">
                 <h1 class="mb-4 text-center"><b>{{ iha.Marka }} / {{ iha.Model }}</b></h1>
@@ -17,22 +25,11 @@
                         {{error}}
                     </div>
                     {% endif %}
-                    <div class="text-center mb-4">
-                        <img src="{{ iha.image.url }}" alt="No İha Image" class="img-fluid rounded-circle"
-                             style="width: 120px;">
-                    </div>
                     <div class="card-body">
-
-                        <div class="form-group mt-4">
-                            <label for="start_date" class="form-label">Kiralama Başlangıç Tarihi:</label>
-                            <input type="datetime-local" id="start_date" name="start_date" class="form-control">
-                        </div>
-                        <br>
+                        <p>Kiralama tarih aralığını seçiniz. (En fazla 7 günlük kiralama yapılabilir)</p>
                         <div class="form-group">
-                            <label for="end_date" class="form-label">Kiralama Bitiş Tarihi:</label>
-                            <input type="datetime-local" id="end_date" name="end_date" class="form-control">
+                            <input type="text" class="form-control" id="daterange" name="datetimes">
                         </div>
-
                         <div class="text-center mt-4">
                             <button type="submit" class="btn btn-primary btn-lg">Kiralamayı Başlat</button>
                         </div>
@@ -43,6 +40,88 @@
     </div>
 </form>
 
+<script>
+$(function() {
+  $('#daterange').daterangepicker({
+    "showDropdowns": true,
+    "timePicker": true,
+    "timePicker24Hour": true,
+    "timePickerIncrement": 10,
+    "maxSpan": {
+        "days": 7
+    },
+    "locale": {
+        "format": "MM/DD/YYYY HH:mm",
+        "separator": " - ",
+        "applyLabel": "Apply",
+        "cancelLabel": "Cancel",
+        "fromLabel": "From",
+        "toLabel": "To",
+        "customRangeLabel": "Custom",
+        "weekLabel": "W",
+        "daysOfWeek": [
+            "Su",
+            "Mo",
+            "Tu",
+            "We",
+            "Th",
+            "Fr",
+            "Sa"
+        ],
+        "monthNames": [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ],
+        "firstDay": 1
+    },
+    "startDate": "05/03/2024",
+    "endDate": "05/06/2024",
+    "opens": "center"
+}, function(start, end, label) {
+});
+});
+</script>
+<script>
+ $('#submitBtn').click(function() {
+    var dateRange = $('#daterange').val();
+    var start_date = moment(dateRange.split(' - ')[0], 'MM/DD/YYYY HH:mm').format('YYYY-MM-DD HH:mm:ss');
+    var end_date = moment(dateRange.split(' - ')[1], 'MM/DD/YYYY HH:mm').format('YYYY-MM-DD HH:mm:ss');
+
+    $.ajax({
+      type: 'POST',
+      url: $('#rentForm').attr('action'),
+      headers: {
+        'X-CSRFToken': $('input[name=csrfmiddlewaretoken]').val()
+      },
+      data: {
+        start_date: start_date,
+        end_date: end_date
+      },
+      success: function(response) {
+        // Handle success response
+        console.log(response);
+      },
+      error: function(xhr, errmsg, err) {
+        // Handle error response
+        console.log(xhr.status + ": " + xhr.responseText);
+      }
+    });
+  });
+});
+</script>
 
 {% endblock %}
 
+{% block js_files %}
+
+{% endblock %}

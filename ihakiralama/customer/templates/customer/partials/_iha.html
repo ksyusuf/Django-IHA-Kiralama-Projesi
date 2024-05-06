@@ -19,6 +19,13 @@
             {% if iha.Status %}Aktif{% else %}Pasif{% endif %}
         </button>
     </td>
-    <td><a href="{% url 'rentable_detail' iha.Iha_id %}" class="btn btn-primary" >Kiralamaya Başla</a></td>
+    <td>
+        {% if iha.Musaitlik == 0 %}
+            <a href="{% url 'rentable_detail' iha.Iha_id %}" class="btn {% if iha.Musaitlik %}btn-success{% else %}btn-danger{% endif %} disabled" >Stokta yok</a>
+        {% else %}
+            <a href="{% url 'rentable_detail' iha.Iha_id %}" class="btn btn-primary" >Kiralamaya Başla</a>
+        {% endif %}
+
+    </td>
 </tr>
 
