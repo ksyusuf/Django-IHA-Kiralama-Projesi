@@ -32,15 +32,22 @@ def register(request):
         repassword = request.POST["id_sifre_tekrar"]
 
         ######################################
-        if password != repassword:
+        if not request.POST["id_sifre"]:
             return render(request, "customer/users/register.html", {
-                "error": "parola eşleşmiyor.",
+                "error": "Şifre boş bırakılamaz.",
                 "Mail": mail,
                 "Ad": ad,
                 "Soyad": soyad,
             })
-        #################################3333
-
+        ######################################
+        if password != repassword:
+            return render(request, "customer/users/register.html", {
+                "error": "Parola eşleşmiyor.",
+                "Mail": mail,
+                "Ad": ad,
+                "Soyad": soyad,
+            })
+        ######################################
         if Customer.objects.filter(Mail=mail).exists():
             return render(request, "customer/users/register.html",
                           {
@@ -49,8 +56,7 @@ def register(request):
                               "Soyad": soyad,
                               "GsmNo": gsm_no
                           })
-        #################################3333
-
+        ######################################
         if password == repassword:
             customer = Customer(Ad=ad, Soyad=soyad, Mail=mail,
                                 GsmNo=gsm_no, Sifre=password, Status=True)
