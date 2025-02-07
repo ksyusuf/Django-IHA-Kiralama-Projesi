@@ -2,7 +2,7 @@
 
 
 Bu proje, Django ve PostgreSQL kullanılarak geliştirilen bir İnsansız Hava Aracı (İHA) kiralama web uygulamasıdır.
-Projede, üyelik sistemi ve kiralama işlemleri ypaılabilmektedir.
+Projede, üyelik sistemi ve kiralama işlemleri yapılabilmektedir.
 
 ## Gereksinimler
 
